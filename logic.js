@@ -1,4 +1,29 @@
 // ....Univesal declaration and others......
+const questions = [
+    {
+      question: 'What is 2+2',
+      answers:[
+          {text: '4', correct: true},
+          {text: '22', correct: false}
+      ]
+    },
+    {
+        question: 'How is this project',
+        answers:[
+            {text:'easy', correct:false},
+            {text:'hard', correct:true}
+        ]
+    },
+    {
+      question: 'Best programming language',
+      answers:[
+          {text: 'C', correct: false},
+          {text:'C++', correct: false},
+          {text:'Java', correct: false},
+          {text:'Java Script', correct:true}
+      ]
+    }
+]
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // .....All Element Selection will be undernith here...........
 const startButton = document.getElementById('start-btn')
