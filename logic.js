@@ -11,7 +11,8 @@ const questions = [
         question: 'How is this project?',
         answers:[
             {text:'easy', correct:false},
-            {text:'hard', correct:true}
+            {text:'hard', correct:true},
+            {text:'Medium', correct:false}
         ]
     },
     {
@@ -29,6 +30,7 @@ let shuffledQuestions, currentQuestionIndex
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // .....All Element Selection will be undernith here...........
 const startButton = document.getElementById('start-btn')
+const nextButton = document.getElementById('next-btn')
 const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
 const answerButtonElement = document.getElementById('answer-buttons')
@@ -47,13 +49,13 @@ startButton.addEventListener('click',()=>{
 function startGame(){
   startButton.classList.add('hide')
   shuffledQuestions = questions.sort(()=>Math.random() - .5)
-  console.log(shuffledQuestions)
   currentQuestionIndex = 0
   questionContainerElement.classList.remove('hide')
   setNextQuestion()
 }
 
 function setNextQuestion(){
+ resetState()
  showQuestion(shuffledQuestions[currentQuestionIndex])
 }
 
@@ -63,7 +65,25 @@ function selectAnswer(){
 
 // Lyer 11111111111111111111111111
 function showQuestion(questionArrayWithIndex){
-  questionElement.innerText = questionArrayWithIndex.question
+  questionElement.innerText = questionArrayWithIndex.question // showing the question
+  
+  questionArrayWithIndex.answers.forEach(answer =>{ // showing the answer
+      const button = document.createElement('button')
+      button.innerText = answer.text
+      button.classList.add('btn')
+      if(answer.correct){
+          button.dataset.correct = answer.correct
+      }
+      button.addEventListener('click',selectAnswer)
+      answerButtonElement.appendChild(button)
+
+  })
+}
+function resetState(){
+ nextButton.classList.add('hide')
+ while(answerButtonElement.firstChild){
+    answerButtonElement.removeChild(answerButtonElement.firstChild)
+ }
 }
 // ---------------------------------
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
