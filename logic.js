@@ -41,6 +41,10 @@ const answerButtonElement = document.getElementById('answer-buttons')
 startButton.addEventListener('click',()=>{
   startGame()
 })
+nextButton.addEventListener('click',()=>{
+    currentQuestionIndex ++
+    setNextQuestion()
+})
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
@@ -59,8 +63,28 @@ function setNextQuestion(){
  showQuestion(shuffledQuestions[currentQuestionIndex])
 }
 
-function selectAnswer(){
+function selectAnswer(e){
+const selectedButton = e.target
+const correct = selectedButton.dataset.correct
+setStatusClass(document.body, correct)
+Array.from(answerButtonElement.children).forEach(button=>{
+    setStatusClass(button,button.dataset.correct)
+})
+if(shuffledQuestions.length > currentQuestionIndex + 1){
+    nextButton.classList.remove('hide')
+} else{
+    startButton.innerText = 'Restart again'
+    startButton.classList.remove('hide')
+}
 
+}
+function setStatusClass(element,correct){
+    clearStatusClass(element)
+ if(correct){
+     element.classList.add('correct')
+ }else{
+     element.classList.add('wrong')
+ }
 }
 
 // Lyer 11111111111111111111111111
@@ -80,11 +104,23 @@ function showQuestion(questionArrayWithIndex){
   })
 }
 function resetState(){
+clearStatusClass(document.body)
  nextButton.classList.add('hide')
  while(answerButtonElement.firstChild){
     answerButtonElement.removeChild(answerButtonElement.firstChild)
  }
 }
+
+// layer 2222222222222222
+
+function clearStatusClass(element){
+    element.classList.remove('correct')
+    element.classList.remove('wrong')
+}
+// ------------------------
+
+
+
 // ---------------------------------
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
