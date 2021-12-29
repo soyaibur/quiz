@@ -1,3 +1,88 @@
 *, *::after, *::before{
     box-sizing: border-box;
+    font-family: Gotham Rounded;
 }
+:root{
+    --heu-neutral: 200;
+    --heu-wrong: 0;
+    --heu-correct: 145;
+}
+body{
+    --heu: var(--heu-neutral);
+    margin:0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 800px;
+    max-width: 80vw;
+    background-color: hsl(var(--heu), 50%, 30%);
+}
+body.correct{
+    --heu:var(--heu-correct);
+}
+body.wrong{
+    --heu:var(--heu-wrong);
+}
+
+.container{
+    background-color:white;
+    padding:1rem;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 5px;
+}
+#question{
+    text-align:center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom:1rem;
+    word-break: keep-all;
+}
+#answer-buttons{
+ margin-bottom: 1rem;   
+}
+.btn-grid{
+    display:grid;
+    grid-template-columns: repeat(2, auto);
+    gap: .5rem;
+    justify-content: center;
+    align-items: center;
+}
+.btn{
+    background-color: hsl(var(--heu), 80%, 50%);
+    border: 6px solid hsl(var(--heu), 50%, 30%);
+    border-radius:10px;
+    padding:10px 20px;
+    font-size: 1.5rem;
+    color:white;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 350ms ease-in-out;
+}
+.btn:hover{
+    border-color: black;
+}
+.btn.correct{
+    --heu:var(--heu-correct);
+    color:black;
+}
+.btn.wrong{
+    --heu:var(--heu-wrong);
+}
+.controls{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    gap:.5rem;
+}
+.start-btn, .next-btn{
+    font-size:1.5rem;
+    font-weight:bold;
+    padding:20px 30px;
+    
+}
+
+.hide{
+    display: none;
+}
+
